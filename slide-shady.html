@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>256 Shades of Grey with Slider</title>
+    <style>
+        .shade {
+            width: 150px;
+            height: 100px;
+            display: inline-block;
+            margin: 2px;
+            color: #000;
+            text-align: center;
+            line-height: 100px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .slider-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <input type="range" id="shadeSlider" min="0" max="255" value="0" />
+        <span id="shadeValue">0</span>
+    </div>
+    <div id="shadeDisplay" class="shade"></div>
+
+    <script>
+        // Function to update the displayed shade based on slider value
+        function updateShade(value) {
+            const grey = value.toString(16).padStart(2, '0'); // Convert to hex and pad
+            const hex = `#${grey}${grey}${grey}`; // Create hex color code
+            const rgb = `rgb(${value},${value},${value})`; // Create RGB color code
+            
+            // Update the shade display
+            const shadeDisplay = document.getElementById('shadeDisplay');
+            shadeDisplay.style.backgroundColor = hex;
+            shadeDisplay.innerHTML = `${hex}<br>${rgb}`;
+        }
+
+        // Set up event listener for the slider
+        const slider = document.getElementById('shadeSlider');
+        const shadeValue = document.getElementById('shadeValue');
+        slider.addEventListener('input', (event) => {
+            const value = event.target.value;
+            shadeValue.textContent = value;
+            updateShade(value);
+        });
+
+        // Initialize the display with the initial slider value
+        updateShade(slider.value);
+    </script>
+</body>
+</html>
