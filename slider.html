@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .color-display {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 1px solid #000;
+            background-color: rgb(0, 0, 0);
+        }
+        .slider-container {
+            margin: 10px;
+        }
+        .slider-label {
+            display: block;
+            margin: 10px 0;
+        }
+        .slider {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="color-display" id="colorDisplay"></div>
+
+    <div class="slider-container">
+        <label class="slider-label">Red: <span id="redValue">0</span></label>
+        <input type="range" min="0" max="255" value="0" class="slider" id="redSlider">
+    </div>
+
+    <div class="slider-container">
+        <label class="slider-label">Green: <span id="greenValue">0</span></label>
+        <input type="range" min="0" max="255" value="0" class="slider" id="greenSlider">
+    </div>
+
+    <div class="slider-container">
+        <label class="slider-label">Blue: <span id="blueValue">0</span></label>
+        <input type="range" min="0" max="255" value="0" class="slider" id="blueSlider">
+    </div>
+
+    <script>
+        const colorDisplay = document.getElementById('colorDisplay');
+        const redSlider = document.getElementById('redSlider');
+        const greenSlider = document.getElementById('greenSlider');
+        const blueSlider = document.getElementById('blueSlider');
+
+        const redValue = document.getElementById('redValue');
+        const greenValue = document.getElementById('greenValue');
+        const blueValue = document.getElementById('blueValue');
+
+        function updateColor() {
+            const red = redSlider.value;
+            const green = greenSlider.value;
+            const blue = blueSlider.value;
+
+            redValue.textContent = red;
+            greenValue.textContent = green;
+            blueValue.textContent = blue;
+
+            colorDisplay.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        }
+
+        redSlider.addEventListener('input', updateColor);
+        greenSlider.addEventListener('input', updateColor);
+        blueSlider.addEventListener('input', updateColor);
+
+        // Initialize color display
+        updateColor();
+    </script>
+</body>
+</html>
